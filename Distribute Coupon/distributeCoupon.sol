@@ -1952,15 +1952,15 @@ import "./IcoToken.sol";
 
 
 
-contract RedeemCoupon is ERC721, ERC721URIStorage, Ownable, EIP712 {
+contract DistributeCoupon is ERC721, ERC721URIStorage, Ownable, EIP712 {
     string private constant SIGNING_DOMAIN = "LazyCoupon";
     string private constant SIGNATURE_VERSION = "1";
     uint256 public nftcount = 1;
     mapping(address=>bool) public couponCreator;
-    event CouponRedeemed(address user, uint256 couponCode, address redeemedBy,bytes signature );
+    event CouponsDistributed(uint256 couponCode,string uri);
     IcoToken icoTokenObj ;
 	IcoContract icoContractObj ;
-    constructor(address _creator,address _icoToken) ERC721("LazyNFT", "LNFT") EIP712(SIGNING_DOMAIN, SIGNATURE_VERSION) {
+    constructor(address _creator,address _icoToken) ERC721("StarBucks", "STBK") EIP712(SIGNING_DOMAIN, SIGNATURE_VERSION) {
         couponCreator[_creator]=true;
         icoTokenObj = IcoToken(_icoToken);
     }
@@ -1970,117 +1970,39 @@ contract RedeemCoupon is ERC721, ERC721URIStorage, Ownable, EIP712 {
         string uri;
         address creator;
         uint256 rewardCost;
-        address redeemedBy;
         uint256 couponCode;
-        uint256 redeemType;
-        bytes signature;
+        address[] consumers;
         uint256 startTime;
         uint256 endTime;
     }
     mapping(uint256 => Coupon) coupondetails; 
-    // mapping(address => uint256[]) private couponCodes;
-
-    // function addCouponCodes(uint256[] memory _couponCodes) public returns (bool){
-    //     couponCodes[msg.sender] = _couponCodes;
-    //     return true;
-    // }
 
     function approveCreator(address _creator) onlyOwner public returns (bool)  {
             couponCreator[_creator] = true;
             return true;
     }
 
-    function createCouponCode(string calldata coupon, uint256 _noOfCoupon)public view returns(uint256[] memory){
-        uint[] memory codeList =new uint[](_noOfCoupon);
-        for(uint i = 0 ; i < _noOfCoupon ; i++)
-        {
-        	uint32 code = uint32(uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty,i,coupon)))%2000000000);
-        	codeList[i]=code;
-        		
+    function createCouponCode(string memory uri)public view returns(uint256){
+        return uint32(uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty,uri)))%2000000000);
+    }
+
+    function distributeCoupon(Coupon memory _coupon) public onlyOwner {
+        uint256 code = createCouponCode(_coupon.uri);
+        for(uint i = 0; i<_coupon.consumers.length; i++) {
+                _safeMint(_coupon.consumers[i],_coupon.uri);
+                nftcount++;     
         }
-        return codeList;
+        coupondetails[code] = _coupon;
+        coupondetails[code].couponCode = code;
+        emit CouponsDistributed(code,_coupon.uri);
     }
 
-    function verifySignature(
-    string calldata _name,
-    address _address,
-    string calldata _uri,
-    uint256 _couponCode,
-    uint256 _rewardCost,
-    uint256 _endTime,
-    uint8 v,
-    bytes32 r,
-    bytes32 s
-) public pure returns (address) {
-    bytes32 messageHash = keccak256(abi.encodePacked("\x19Ethereum Signed Message:\n32", getMessageHash(_name,_address,_uri,_couponCode,_rewardCost,_endTime)));
-    return ecrecover(messageHash, v, r, s);
-}
 
-    function getMessageHash(string memory _name, address _address, string memory _uri, uint256 _couponCode, uint256 _rewardCost,uint256 _endTime) public pure returns (bytes32) {
-        bytes32 hash = keccak256(abi.encode(
-            _name,
-            _address,
-            _uri,
-            _couponCode,
-            _rewardCost,
-            _endTime
-        ));
-        return hash;
-    }
-
-    function redeemCoupon(Coupon calldata voucher) public returns(bool)
-	{   (bytes32 r, bytes32 s, uint8 v) = extractRSV(voucher.signature);
-        require(couponCreator[verifySignature(voucher.name,voucher.creator,voucher.uri,voucher.couponCode,voucher.rewardCost,voucher.endTime, v,r,s)], "Wrong signature.");
-        require(voucher.startTime<=block.timestamp,"redeem not started");
-        require(voucher.endTime>=block.timestamp,"redeem ended");
-        require(coupondetails[voucher.couponCode].redeemedBy==address(0),"coupon already redeemed");
-        require(voucher.rewardCost != 0,"reward cost is zero");
-        require(voucher.redeemedBy != address(0),"zero address");
-        if(voucher.redeemType == 1){
-        safeMint(voucher);
-        nftcount++;
-        }else{
-       /* Transfer Reward Cost Token to msg.sender from Coupon Creator Account via TokenContract using transferFrom method */  
-        icoTokenObj.transferFrom(voucher.creator, voucher.redeemedBy, voucher.rewardCost);   
-       	/* Update Coupon redeemedBy address */      
-        }
-        coupondetails[voucher.couponCode] = voucher;
-
-		/* Trigger Event */
-		emit CouponRedeemed(msg.sender , voucher.couponCode, voucher.redeemedBy, voucher.signature);
-		
-		return true;
-	}
-
-
-    function extractRSV(bytes memory signature) public pure returns (bytes32 r, bytes32 s, uint8 v) {
-    require(signature.length == 65, "Invalid signature length");
-
-    assembly {
-        // Load the first 32 bytes of the signature into `r`
-        r := mload(add(signature, 32))
-
-        // Load the next 32 bytes of the signature into `s`
-        s := mload(add(signature, 64))
-
-        // Load the last byte of the signature into `v`
-        v := byte(0, mload(add(signature, 96)))
-
-        // Add 27 to `v` to get the correct Ethereum value
-        // v := add(v, 27)
-    }
-}
-
-
-
-
-
-
-    function safeMint(Coupon calldata voucher)
+    function _safeMint(address _address,string memory uri)
         private returns(bool)
     {
-        _safeMint(voucher.redeemedBy, nftcount);
-        _setTokenURI(nftcount, voucher.uri);
+        _safeMint(_address, nftcount);
+        _setTokenURI(nftcount, uri);
         return true;
     }
 

@@ -1,0 +1,1619 @@
+{
+	"compiler": {
+		"version": "0.8.17+commit.8df45f5f"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "symbol",
+						"type": "string"
+					},
+					{
+						"internalType": "address[]",
+						"name": "allowedSeaDrop",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "AlreadyInitialized",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "ApprovalCallerNotOwnerNorApproved",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "ApprovalQueryForNonexistentToken",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "BalanceQueryForZeroAddress",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "newMaxSupply",
+						"type": "uint256"
+					}
+				],
+				"name": "CannotExceedMaxSupplyOfUint64",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "MintERC2309QuantityExceedsLimit",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "total",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "maxSupply",
+						"type": "uint256"
+					}
+				],
+				"name": "MintQuantityExceedsMaxSupply",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "MintToZeroAddress",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "MintZeroQuantity",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "NewOwnerIsZeroAddress",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "NotNextOwner",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "OnlyAllowedSeaDrop",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "OnlyOwner",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "OwnerQueryForNonexistentToken",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "OwnershipNotInitializedForExtraData",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "ProvenanceHashCannotBeSetAfterMintStarted",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "TransferCallerNotOwnerNorApproved",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "TransferFromIncorrectOwner",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "TransferToNonERC721ReceiverImplementer",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "TransferToZeroAddress",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "URIQueryForNonexistentToken",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address[]",
+						"name": "allowedSeaDrop",
+						"type": "address[]"
+					}
+				],
+				"name": "AllowedSeaDropUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "approved",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "Approval",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "operator",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "approved",
+						"type": "bool"
+					}
+				],
+				"name": "ApprovalForAll",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "baseURI",
+						"type": "string"
+					}
+				],
+				"name": "BaseURIUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "fromTokenId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "toTokenId",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					}
+				],
+				"name": "ConsecutiveTransfer",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "newContractURI",
+						"type": "string"
+					}
+				],
+				"name": "ContractURIUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "newMaxSupply",
+						"type": "uint256"
+					}
+				],
+				"name": "MaxSupplyUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "newPotentialAdministrator",
+						"type": "address"
+					}
+				],
+				"name": "PotentialOwnerUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "previousHash",
+						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "newHash",
+						"type": "bytes32"
+					}
+				],
+				"name": "ProvenanceHashUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "startTokenId",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "endTokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "TokenURIUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "Transfer",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "acceptOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "approve",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "balanceOf",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "baseURI",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "cancelOwnershipTransfer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "contractURI",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "startTokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "endTokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "emitBatchTokenURIUpdated",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "getApproved",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "minter",
+						"type": "address"
+					}
+				],
+				"name": "getMintStats",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "minterNumMinted",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "currentTotalSupply",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "maxSupply",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "operator",
+						"type": "address"
+					}
+				],
+				"name": "isApprovedForAll",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "maxSupply",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "minter",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "quantity",
+						"type": "uint256"
+					}
+				],
+				"name": "mintSeaDrop",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "name",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "ownerOf",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "provenanceHash",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "safeTransferFrom",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "_data",
+						"type": "bytes"
+					}
+				],
+				"name": "safeTransferFrom",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "operator",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "approved",
+						"type": "bool"
+					}
+				],
+				"name": "setApprovalForAll",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "newBaseURI",
+						"type": "string"
+					}
+				],
+				"name": "setBaseURI",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "newContractURI",
+						"type": "string"
+					}
+				],
+				"name": "setContractURI",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "newMaxSupply",
+						"type": "uint256"
+					}
+				],
+				"name": "setMaxSupply",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "newProvenanceHash",
+						"type": "bytes32"
+					}
+				],
+				"name": "setProvenanceHash",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes4",
+						"name": "interfaceId",
+						"type": "bytes4"
+					}
+				],
+				"name": "supportsInterface",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "symbol",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "tokenURI",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalSupply",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "transferFrom",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newPotentialOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "seaDropImpl",
+						"type": "address"
+					},
+					{
+						"components": [
+							{
+								"internalType": "bytes32",
+								"name": "merkleRoot",
+								"type": "bytes32"
+							},
+							{
+								"internalType": "string[]",
+								"name": "publicKeyURIs",
+								"type": "string[]"
+							},
+							{
+								"internalType": "string",
+								"name": "allowListURI",
+								"type": "string"
+							}
+						],
+						"internalType": "struct AllowListData",
+						"name": "allowListData",
+						"type": "tuple"
+					}
+				],
+				"name": "updateAllowList",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "seaDropImpl",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "feeRecipient",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "allowed",
+						"type": "bool"
+					}
+				],
+				"name": "updateAllowedFeeRecipient",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address[]",
+						"name": "allowedSeaDrop",
+						"type": "address[]"
+					}
+				],
+				"name": "updateAllowedSeaDrop",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "seaDropImpl",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "payoutAddress",
+						"type": "address"
+					}
+				],
+				"name": "updateCreatorPayoutAddress",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "seaDropImpl",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "dropURI",
+						"type": "string"
+					}
+				],
+				"name": "updateDropURI",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "seaDropImpl",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "payer",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "allowed",
+						"type": "bool"
+					}
+				],
+				"name": "updatePayer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "seaDropImpl",
+						"type": "address"
+					},
+					{
+						"components": [
+							{
+								"internalType": "uint80",
+								"name": "mintPrice",
+								"type": "uint80"
+							},
+							{
+								"internalType": "uint48",
+								"name": "startTime",
+								"type": "uint48"
+							},
+							{
+								"internalType": "uint48",
+								"name": "endTime",
+								"type": "uint48"
+							},
+							{
+								"internalType": "uint16",
+								"name": "maxTotalMintableByWallet",
+								"type": "uint16"
+							},
+							{
+								"internalType": "uint16",
+								"name": "feeBps",
+								"type": "uint16"
+							},
+							{
+								"internalType": "bool",
+								"name": "restrictFeeRecipients",
+								"type": "bool"
+							}
+						],
+						"internalType": "struct PublicDrop",
+						"name": "publicDrop",
+						"type": "tuple"
+					}
+				],
+				"name": "updatePublicDrop",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "seaDropImpl",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "signer",
+						"type": "address"
+					},
+					{
+						"components": [
+							{
+								"internalType": "uint80",
+								"name": "minMintPrice",
+								"type": "uint80"
+							},
+							{
+								"internalType": "uint24",
+								"name": "maxMaxTotalMintableByWallet",
+								"type": "uint24"
+							},
+							{
+								"internalType": "uint40",
+								"name": "minStartTime",
+								"type": "uint40"
+							},
+							{
+								"internalType": "uint40",
+								"name": "maxEndTime",
+								"type": "uint40"
+							},
+							{
+								"internalType": "uint40",
+								"name": "maxMaxTokenSupplyForStage",
+								"type": "uint40"
+							},
+							{
+								"internalType": "uint16",
+								"name": "minFeeBps",
+								"type": "uint16"
+							},
+							{
+								"internalType": "uint16",
+								"name": "maxFeeBps",
+								"type": "uint16"
+							}
+						],
+						"internalType": "struct SignedMintValidationParams",
+						"name": "signedMintValidationParams",
+						"type": "tuple"
+					}
+				],
+				"name": "updateSignedMintValidationParams",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "seaDropImpl",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "allowedNftToken",
+						"type": "address"
+					},
+					{
+						"components": [
+							{
+								"internalType": "uint80",
+								"name": "mintPrice",
+								"type": "uint80"
+							},
+							{
+								"internalType": "uint16",
+								"name": "maxTotalMintableByWallet",
+								"type": "uint16"
+							},
+							{
+								"internalType": "uint48",
+								"name": "startTime",
+								"type": "uint48"
+							},
+							{
+								"internalType": "uint48",
+								"name": "endTime",
+								"type": "uint48"
+							},
+							{
+								"internalType": "uint8",
+								"name": "dropStageIndex",
+								"type": "uint8"
+							},
+							{
+								"internalType": "uint32",
+								"name": "maxTokenSupplyForStage",
+								"type": "uint32"
+							},
+							{
+								"internalType": "uint16",
+								"name": "feeBps",
+								"type": "uint16"
+							},
+							{
+								"internalType": "bool",
+								"name": "restrictFeeRecipients",
+								"type": "bool"
+							}
+						],
+						"internalType": "struct TokenGatedDropStage",
+						"name": "dropStage",
+						"type": "tuple"
+					}
+				],
+				"name": "updateTokenGatedDrop",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"author": "James Wenzel (emo.eth)Ryan Ghods (ralxz.eth)Stephan Min (stephanm.eth)",
+			"errors": {
+				"OnlyAllowedSeaDrop()": [
+					{
+						"details": "Revert with an error if a contract is not an allowed      SeaDrop address."
+					}
+				],
+				"ProvenanceHashCannotBeSetAfterMintStarted()": [
+					{
+						"details": "Revert with an error when attempting to set the provenance      hash after the mint has started."
+					}
+				]
+			},
+			"kind": "dev",
+			"methods": {
+				"approve(address,uint256)": {
+					"details": "Gives permission to `to` to transfer `tokenId` token to another account. The approval is cleared when the token is transferred. Only a single account can be approved at a time, so approving the zero address clears previous approvals. Requirements: - The caller must own the token or be an approved operator. - `tokenId` must exist. Emits an {Approval} event."
+				},
+				"balanceOf(address)": {
+					"details": "Returns the number of tokens in `owner`'s account."
+				},
+				"emitBatchTokenURIUpdated(uint256,uint256)": {
+					"params": {
+						"endTokenId": "The end token id.",
+						"startTokenId": "The start token id."
+					}
+				},
+				"getApproved(uint256)": {
+					"details": "Returns the account approved for `tokenId` token. Requirements: - `tokenId` must exist."
+				},
+				"getMintStats(address)": {
+					"details": "NOTE: Implementing contracts should always update these numbers         before transferring any tokens with _safeMint() to mitigate         consequences of malicious onERC721Received() hooks.",
+					"params": {
+						"minter": "The minter address."
+					}
+				},
+				"isApprovedForAll(address,address)": {
+					"details": "Returns if the `operator` is allowed to manage all of the assets of `owner`. See {setApprovalForAll}."
+				},
+				"mintSeaDrop(address,uint256)": {
+					"details": "NOTE: If a token registers itself with multiple SeaDrop         contracts, the implementation of this function should guard         against reentrancy. If the implementing token uses         _safeMint(), or a feeRecipient with a malicious receive() hook         is specified, the token or fee recipients may be able to execute         another mint in the same transaction via a separate SeaDrop         contract.         This is dangerous if an implementing token does not correctly         update the minterNumMinted and currentTotalSupply values before         transferring minted tokens, as SeaDrop references these values         to enforce token limits on a per-wallet and per-stage basis.         ERC721A tracks these values automatically, but this note and         nonReentrant modifier are left here to encourage best-practices         when referencing this contract.",
+					"params": {
+						"minter": "The address to mint to.",
+						"quantity": "The number of tokens to mint."
+					}
+				},
+				"name()": {
+					"details": "Returns the token collection name."
+				},
+				"ownerOf(uint256)": {
+					"details": "Returns the owner of the `tokenId` token. Requirements: - `tokenId` must exist."
+				},
+				"renounceOwnership()": {
+					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner."
+				},
+				"safeTransferFrom(address,address,uint256)": {
+					"details": "Equivalent to `safeTransferFrom(from, to, tokenId, '')`."
+				},
+				"safeTransferFrom(address,address,uint256,bytes)": {
+					"details": "Safely transfers `tokenId` token from `from` to `to`. Requirements: - `from` cannot be the zero address. - `to` cannot be the zero address. - `tokenId` token must exist and be owned by `from`. - If the caller is not `from`, it must be approved to move this token by either {approve} or {setApprovalForAll}. - If `to` refers to a smart contract, it must implement {IERC721Receiver-onERC721Received}, which is called upon a safe transfer. Emits a {Transfer} event."
+				},
+				"setApprovalForAll(address,bool)": {
+					"details": "Approve or remove `operator` as an operator for the caller. Operators can call {transferFrom} or {safeTransferFrom} for any token owned by the caller. Requirements: - The `operator` cannot be the caller. Emits an {ApprovalForAll} event."
+				},
+				"setBaseURI(string)": {
+					"params": {
+						"newBaseURI": "The new base URI to set."
+					}
+				},
+				"setContractURI(string)": {
+					"params": {
+						"newContractURI": "The new contract URI."
+					}
+				},
+				"setMaxSupply(uint256)": {
+					"params": {
+						"newMaxSupply": "The new max supply to set."
+					}
+				},
+				"setProvenanceHash(bytes32)": {
+					"params": {
+						"newProvenanceHash": "The new provenance hash to set."
+					}
+				},
+				"supportsInterface(bytes4)": {
+					"params": {
+						"interfaceId": "The interface id to check against."
+					}
+				},
+				"symbol()": {
+					"details": "Returns the token collection symbol."
+				},
+				"tokenURI(uint256)": {
+					"details": "Returns the Uniform Resource Identifier (URI) for `tokenId` token."
+				},
+				"totalSupply()": {
+					"details": "Returns the total number of tokens in existence. Burned tokens will reduce the count. To get the total number of tokens minted, please see {_totalMinted}."
+				},
+				"transferFrom(address,address,uint256)": {
+					"details": "Transfers `tokenId` from `from` to `to`. Requirements: - `from` cannot be the zero address. - `to` cannot be the zero address. - `tokenId` token must be owned by `from`. - If the caller is not `from`, it must be approved to move this token by either {approve} or {setApprovalForAll}. Emits a {Transfer} event."
+				},
+				"transferOwnership(address)": {
+					"params": {
+						"newPotentialOwner": "address of potential new owner"
+					}
+				},
+				"updateAllowList(address,(bytes32,string[],string))": {
+					"params": {
+						"allowListData": "The allow list data.",
+						"seaDropImpl": "The allowed SeaDrop contract."
+					}
+				},
+				"updateAllowedFeeRecipient(address,address,bool)": {
+					"params": {
+						"allowed": "If the fee recipient is allowed.",
+						"feeRecipient": "The new fee recipient.",
+						"seaDropImpl": "The allowed SeaDrop contract."
+					}
+				},
+				"updateAllowedSeaDrop(address[])": {
+					"params": {
+						"allowedSeaDrop": "The allowed SeaDrop addresses."
+					}
+				},
+				"updateCreatorPayoutAddress(address,address)": {
+					"params": {
+						"payoutAddress": "The new payout address.",
+						"seaDropImpl": "The allowed SeaDrop contract."
+					}
+				},
+				"updateDropURI(address,string)": {
+					"params": {
+						"dropURI": "The new drop URI.",
+						"seaDropImpl": "The allowed SeaDrop contract."
+					}
+				},
+				"updatePayer(address,address,bool)": {
+					"params": {
+						"allowed": "Whether the payer is allowed.",
+						"payer": "The payer to update.",
+						"seaDropImpl": "The allowed SeaDrop contract."
+					}
+				},
+				"updatePublicDrop(address,(uint80,uint48,uint48,uint16,uint16,bool))": {
+					"params": {
+						"publicDrop": "The public drop data.",
+						"seaDropImpl": "The allowed SeaDrop contract."
+					}
+				},
+				"updateSignedMintValidationParams(address,address,(uint80,uint24,uint40,uint40,uint40,uint16,uint16))": {
+					"params": {
+						"seaDropImpl": "The allowed SeaDrop contract.",
+						"signedMintValidationParams": "Minimum and maximum parameters to                                   enforce for signed mints.",
+						"signer": "The signer to update."
+					}
+				},
+				"updateTokenGatedDrop(address,address,(uint80,uint16,uint48,uint48,uint8,uint32,uint16,bool))": {
+					"params": {
+						"allowedNftToken": "The allowed nft token.",
+						"dropStage": "The token gated drop stage data.",
+						"seaDropImpl": "The allowed SeaDrop contract."
+					}
+				}
+			},
+			"title": "ERC721SeaDrop",
+			"version": 1
+		},
+		"userdoc": {
+			"errors": {
+				"ApprovalCallerNotOwnerNorApproved()": [
+					{
+						"notice": "The caller must own the token or be an approved operator."
+					}
+				],
+				"ApprovalQueryForNonexistentToken()": [
+					{
+						"notice": "The token does not exist."
+					}
+				],
+				"BalanceQueryForZeroAddress()": [
+					{
+						"notice": "Cannot query the balance for the zero address."
+					}
+				],
+				"CannotExceedMaxSupplyOfUint64(uint256)": [
+					{
+						"notice": "Throw if the max supply exceeds uint64, a limit"
+					}
+				],
+				"MintERC2309QuantityExceedsLimit()": [
+					{
+						"notice": "The `quantity` minted with ERC2309 exceeds the safety limit."
+					}
+				],
+				"MintQuantityExceedsMaxSupply(uint256,uint256)": [
+					{
+						"notice": "Revert with an error if mint exceeds the max supply."
+					}
+				],
+				"MintToZeroAddress()": [
+					{
+						"notice": "Cannot mint to the zero address."
+					}
+				],
+				"MintZeroQuantity()": [
+					{
+						"notice": "The quantity of tokens minted must be more than zero."
+					}
+				],
+				"OwnerQueryForNonexistentToken()": [
+					{
+						"notice": "The token does not exist."
+					}
+				],
+				"OwnershipNotInitializedForExtraData()": [
+					{
+						"notice": "The `extraData` cannot be set on an unintialized ownership slot."
+					}
+				],
+				"TransferCallerNotOwnerNorApproved()": [
+					{
+						"notice": "The caller must own the token or be an approved operator."
+					}
+				],
+				"TransferFromIncorrectOwner()": [
+					{
+						"notice": "The token must be owned by `from`."
+					}
+				],
+				"TransferToNonERC721ReceiverImplementer()": [
+					{
+						"notice": "Cannot safely transfer to a contract that does not implement the ERC721Receiver interface."
+					}
+				],
+				"TransferToZeroAddress()": [
+					{
+						"notice": "Cannot transfer to the zero address."
+					}
+				],
+				"URIQueryForNonexistentToken()": [
+					{
+						"notice": "The token does not exist."
+					}
+				]
+			},
+			"kind": "user",
+			"methods": {
+				"acceptOwnership()": {
+					"notice": "Claim ownership of smart contract, after the current owner has initiated the process with transferOwnership"
+				},
+				"baseURI()": {
+					"notice": "Returns the base URI for token metadata."
+				},
+				"cancelOwnershipTransfer()": {
+					"notice": "cancel ownership transfer"
+				},
+				"constructor": {
+					"notice": "Deploy the token contract with its name, symbol,         and allowed SeaDrop addresses."
+				},
+				"contractURI()": {
+					"notice": "Returns the contract URI for contract metadata."
+				},
+				"emitBatchTokenURIUpdated(uint256,uint256)": {
+					"notice": "Emit an event notifying metadata updates for         a range of token ids."
+				},
+				"getMintStats(address)": {
+					"notice": "Returns a set of mint stats for the address.         This assists SeaDrop in enforcing maxSupply,         maxTotalMintableByWallet, and maxTokenSupplyForStage checks."
+				},
+				"maxSupply()": {
+					"notice": "Returns the max token supply."
+				},
+				"mintSeaDrop(address,uint256)": {
+					"notice": "Mint tokens, restricted to the SeaDrop contract."
+				},
+				"provenanceHash()": {
+					"notice": "Returns the provenance hash.         The provenance hash is used for random reveals, which         is a hash of the ordered metadata to show it is unmodified         after mint has started."
+				},
+				"setBaseURI(string)": {
+					"notice": "Sets the base URI for the token metadata and emits an event."
+				},
+				"setContractURI(string)": {
+					"notice": "Sets the contract URI for contract metadata."
+				},
+				"setMaxSupply(uint256)": {
+					"notice": "Sets the max token supply and emits an event."
+				},
+				"setProvenanceHash(bytes32)": {
+					"notice": "Sets the provenance hash and emits an event.         The provenance hash is used for random reveals, which         is a hash of the ordered metadata to show it is unmodified         after mint has started.         This function will revert after the first item has been minted."
+				},
+				"supportsInterface(bytes4)": {
+					"notice": "Returns whether the interface is supported."
+				},
+				"transferOwnership(address)": {
+					"notice": "Initiate ownership transfer to newPotentialOwner. Note: new owner will have to manually acceptOwnership"
+				},
+				"updateAllowList(address,(bytes32,string[],string))": {
+					"notice": "Update the allow list data for this nft contract on SeaDrop.         Only the owner can use this function."
+				},
+				"updateAllowedFeeRecipient(address,address,bool)": {
+					"notice": "Update the allowed fee recipient for this nft contract         on SeaDrop.         Only the owner can set the allowed fee recipient."
+				},
+				"updateAllowedSeaDrop(address[])": {
+					"notice": "Update the allowed SeaDrop contracts.         Only the owner or administrator can use this function."
+				},
+				"updateCreatorPayoutAddress(address,address)": {
+					"notice": "Update the creator payout address for this nft contract on SeaDrop.         Only the owner can set the creator payout address."
+				},
+				"updateDropURI(address,string)": {
+					"notice": "Update the drop URI for this nft contract on SeaDrop.         Only the owner can use this function."
+				},
+				"updatePayer(address,address,bool)": {
+					"notice": "Update the allowed payers for this nft contract on SeaDrop.         Only the owner can use this function."
+				},
+				"updatePublicDrop(address,(uint80,uint48,uint48,uint16,uint16,bool))": {
+					"notice": "Update the public drop data for this nft contract on SeaDrop.         Only the owner can use this function."
+				},
+				"updateSignedMintValidationParams(address,address,(uint80,uint24,uint40,uint40,uint40,uint16,uint16))": {
+					"notice": "Update the server-side signers for this nft contract         on SeaDrop.         Only the owner can use this function."
+				},
+				"updateTokenGatedDrop(address,address,(uint80,uint16,uint48,uint48,uint8,uint32,uint16,bool))": {
+					"notice": "Update the token gated drop stage data for this nft contract         on SeaDrop.         Only the owner can use this function.         Note: If two INonFungibleSeaDropToken tokens are doing         simultaneous token gated drop promotions for each other,         they can be minted by the same actor until         `maxTokenSupplyForStage` is reached. Please ensure the         `allowedNftToken` is not running an active drop during the         `dropStage` time period."
+				}
+			},
+			"notice": "ERC721SeaDrop is a token contract that contains methods         to properly interact with SeaDrop.",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/SeaDrop/erc721SeaDrop/ERC721SeaDrop.sol": "ERC721SeaDrop"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/SeaDrop/erc721SeaDrop/ConstructorInitializable.sol": {
+			"keccak256": "0x5cd8a186d304c013b7468ebfc0aeda488431294a11146c1bd5610e4ef11533fd",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c4e3bc61d0cf60b44ee2c3a4c59a3b826a5a4aab031362659f2f9b0bb7d65481",
+				"dweb:/ipfs/QmSwDbEN9jG8HZuEv9WTMp315kGNgSm6X141ASaMwaR98L"
+			]
+		},
+		"contracts/SeaDrop/erc721SeaDrop/ERC721A.sol": {
+			"keccak256": "0x75ab2b1134693c0042ab45b8771ca3669d049183dd71c291f17a6ef8500b0d49",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://0d7feac1227de0679b0c8cf6ed9094436edc472b7f86e0fe3c5b6f177a76630f",
+				"dweb:/ipfs/QmUj8jgcfBj6ey5KQNS21aLUD8PUuZ5cdz7A4gMwWaTc6Y"
+			]
+		},
+		"contracts/SeaDrop/erc721SeaDrop/ERC721ContractMetadata.sol": {
+			"keccak256": "0x1c82ab453c17f40dac1999c426a3f685a83acab271536824ef93a900ac254429",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://97a14712c60cc11150631238f7809cf81cf77c97e85f1f81d2c6b6a8cca31f7f",
+				"dweb:/ipfs/QmcGJFdRpa9qTDSQjbNpXGG6dT6CKtJavP5tNmcsMux79d"
+			]
+		},
+		"contracts/SeaDrop/erc721SeaDrop/ERC721SeaDrop.sol": {
+			"keccak256": "0x669aaf8067a019b421ad35950121475f43047b8c7b19ad057f784bd7ddc5ffae",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://9a0aabbb27f2cb2b2146e2a25072a8d5165a9c911a085ffaf77eeaa62651399c",
+				"dweb:/ipfs/QmaCbsJj83wWDmjf6yncRJ4PCJruwKVXxJDbLBwXZKjT5s"
+			]
+		},
+		"contracts/SeaDrop/erc721SeaDrop/IERC165.sol": {
+			"keccak256": "0x3213cb47aba4f8ba951dc5671d44e3559fecec1e9c402e679fbb5ada255fdff1",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://fc2296c533793e4c2a6eb4909bd2ca8e99044aff82e3fe2049092bd3f62034a3",
+				"dweb:/ipfs/QmVwAULUUqeXLdggzzW1C3hdNUZbqHoCskoGyfzZ5EKcwW"
+			]
+		},
+		"contracts/SeaDrop/erc721SeaDrop/IERC721A.sol": {
+			"keccak256": "0x172a35049f383cb7ee8fdc60a7775a8c340fba5d3abdda2150b640c0742cc4a3",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://87ca9f188d6ba96811a712ca2a65ca12c2a42af7fabce58b6848fffeb2574485",
+				"dweb:/ipfs/QmaYatN4G4eJ5MnKmDkamaSBakQFWM44UgFUihp392ZL5D"
+			]
+		},
+		"contracts/SeaDrop/erc721SeaDrop/ReentrancyGuard.sol": {
+			"keccak256": "0xe3b8e90aa21a3c7d92ec9f45963f6d99253722582a03f0483835fdf39f639eeb",
+			"license": "AGPL-3.0-only",
+			"urls": [
+				"bzz-raw://33156d0ae126cbf7f7eb1b05471b7328ca014b3e7920f8e6b8337990d47b0457",
+				"dweb:/ipfs/QmQgHspKUh5t96Wv1dU2hyj8SsSE6VzGkuStUVLbUWTS1h"
+			]
+		},
+		"contracts/SeaDrop/erc721SeaDrop/TwoStepOwnable.sol": {
+			"keccak256": "0xac37dc83e2dbfdd2e03597429b4f26ddb6ad1644aa1df6b8f9935228614e73b7",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://234c44b0e271f2775cf94ab3872db6e89ead770e05acc98ab00782791c5cd746",
+				"dweb:/ipfs/QmdTL9ADeiShaRgqoZsKYddh5dD1zCNfNTXvvJzV1JDNzz"
+			]
+		},
+		"contracts/SeaDrop/erc721SeaDrop/interfaces/INonFungibleSeaDropToken.sol": {
+			"keccak256": "0x0b4659ba111b178c072c675e86982f6ee6e5607126576306025fc628f200f8fd",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://80bbb4556b1fd8554d5a2ea3b21053846aa8d65963158ef6b9844e73c8431c6b",
+				"dweb:/ipfs/Qmcxebgf3BXMbS6RbCTcrfdPzZcBcWPGviRQyAEjP1s9sy"
+			]
+		},
+		"contracts/SeaDrop/erc721SeaDrop/interfaces/ISeaDrop.sol": {
+			"keccak256": "0xb1cde4d71b4ffd6a3ce6af47a96d92a07730774b1806a6e3a5ce9f6c30b07b1e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://70e4a32c000c26723526b079b2cddf24b69e5bab9ccb0304ebe14b7e228a6950",
+				"dweb:/ipfs/QmdqcfJU5BFXsWtrQHuMs9U7ohP7Ra1QFGenoXVXFh68x4"
+			]
+		},
+		"contracts/SeaDrop/erc721SeaDrop/interfaces/ISeaDropTokenContractMetadata.sol": {
+			"keccak256": "0xbf24712f3e37fb1e6a9e8a1b4bbab7f66f5057a2ead33f42eb1510ee3265840b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8504f6e5b09e542f198e41e517ce5a7a97ddfe1152ca22fc8675f1b2c7153180",
+				"dweb:/ipfs/QmXtuF1YAWZRs3Yh3S72tU1MBhYdEZbcpMMFeLMuxA3RSJ"
+			]
+		},
+		"contracts/SeaDrop/erc721SeaDrop/lib/SeaDropErrorsAndEvents.sol": {
+			"keccak256": "0xf843fffbb7c3cc568662816979879813eb5fae2b98078aa36d2c3993af44ec2f",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://71a0740c4a9580074989484e08b8287029042e171a40804a1f592710e07787fd",
+				"dweb:/ipfs/QmNwbhTyL3XtNpvL5Tw29FVaoktFZCMfZw8Y1yVyCM99y6"
+			]
+		},
+		"contracts/SeaDrop/erc721SeaDrop/lib/SeaDropStructs.sol": {
+			"keccak256": "0xe976330bb0ed146ef90c520420a30dbd9110350db04d254b9d45358c6ea3a377",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://2f4b7bb540881bc849f62b4068a7a4d6e55e409107ebed18de07c2bc9f8f455d",
+				"dweb:/ipfs/QmchQb3xDF4w3Ca1sgJxLPJXS9573oz8RMu76Wwt96Fqkb"
+			]
+		}
+	},
+	"version": 1
+}
